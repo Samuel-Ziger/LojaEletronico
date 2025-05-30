@@ -8,6 +8,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Search, ShoppingCart, Menu, Heart, Smartphone, Headphones, Battery } from "lucide-react"
 import { useCart } from "@/contexts/cart-context"
 import { AuthButton } from "@/components/auth-button"
+import { AdminAccessButton } from "@/components/admin-access-button"
 
 export function Header() {
   const { cart } = useCart()
@@ -19,6 +20,7 @@ export function Header() {
         <div className="flex items-center justify-between py-2 text-sm border-b">
           <div className="text-gray-600">Frete grátis para compras acima de R$ 199</div>
           <div className="flex items-center gap-4">
+            <AdminAccessButton />
             <Link href="/rastreamento" className="text-gray-600 hover:text-purple-600">
               Rastrear Pedido
             </Link>
