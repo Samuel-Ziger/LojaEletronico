@@ -16,10 +16,11 @@ export async function getSession() {
 }
 
 // Função para verificar se o usuário está autenticado e redirecionar se não estiver
-export async function requireAuth() {
+export async function requireAuth(redirectPath?: string) {
   const session = await getSession()
   if (!session) {
-    redirect("/login?redirectTo=" + encodeURIComponent(window.location.pathname))
+    const redirectTo = redirectPath ? `?redirectTo=${encodeURIComponent(redirectPath)}` : ""
+    redirect(`/login${redirectTo}`)
   }
   return session
 }

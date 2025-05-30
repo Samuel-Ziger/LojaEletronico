@@ -1,6 +1,8 @@
+import { Suspense } from "react"
 import { AuthForm } from "@/components/auth/auth-form"
 import { getSession } from "@/lib/auth"
 import { redirect } from "next/navigation"
+import { LoadingSpinner } from "@/components/loading-spinner"
 
 export const metadata = {
   title: "Login - TechStore",
@@ -18,7 +20,9 @@ export default async function LoginPage() {
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-md mx-auto">
         <h1 className="text-3xl font-bold text-center mb-8">Acesse sua conta</h1>
-        <AuthForm />
+        <Suspense fallback={<LoadingSpinner />}>
+          <AuthForm />
+        </Suspense>
       </div>
     </div>
   )

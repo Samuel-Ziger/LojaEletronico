@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { createClientSupabaseClient } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
@@ -16,7 +16,7 @@ import Link from "next/link"
 export function AuthForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirectTo = searchParams.get("redirectTo") || "/"
+  const [redirectTo, setRedirectTo] = useState("/")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showPassword, setShowPassword] = useState(false)
@@ -34,6 +34,12 @@ export function AuthForm() {
   const [lastName, setLastName] = useState("")
 
   const supabase = createClientSupabaseClient()
+
+  // Get redirect URL safely
+  useEffect(() => {
+    const redirect = searchParams?.get("redirectTo") || "/"
+    setRedirectTo(redirect)
+  }, [searchParams])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
