@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Search, ShoppingCart, User, Menu, Heart, Smartphone, Headphones, Battery } from "lucide-react"
+import { Search, ShoppingCart, Menu, Heart, Smartphone, Headphones, Battery } from "lucide-react"
 import { useCart } from "@/contexts/cart-context"
+import { AuthButton } from "@/components/auth-button"
 
 export function Header() {
   const { cart } = useCart()
@@ -64,19 +65,7 @@ export function Header() {
               </Button>
             </Link>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <User className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Minha Conta</DropdownMenuItem>
-                <DropdownMenuItem>Meus Pedidos</DropdownMenuItem>
-                <DropdownMenuItem>Lista de Desejos</DropdownMenuItem>
-                <DropdownMenuItem>Sair</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <AuthButton />
 
             {/* Mobile menu */}
             <Sheet>
