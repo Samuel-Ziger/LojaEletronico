@@ -1,6 +1,4 @@
 "use client"
-
-import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,9 +6,10 @@ import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Search, ShoppingCart, User, Menu, Heart, Smartphone, Headphones, Battery } from "lucide-react"
+import { useCart } from "@/contexts/cart-context"
 
 export function Header() {
-  const [cartItems] = useState(3) // Simulando itens no carrinho
+  const { cart } = useCart()
 
   return (
     <header className="border-b bg-white sticky top-0 z-50">
@@ -54,14 +53,16 @@ export function Header() {
               <Heart className="h-5 w-5" />
             </Button>
 
-            <Button variant="ghost" size="icon" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              {cartItems > 0 && (
-                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-red-500">
-                  {cartItems}
-                </Badge>
-              )}
-            </Button>
+            <Link href="/carrinho">
+              <Button variant="ghost" size="icon" className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                {cart.itemCount > 0 && (
+                  <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-red-500">
+                    {cart.itemCount}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

@@ -8,11 +8,13 @@ import { Star, ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import type { Product } from "@/lib/types"
 import Link from "next/link"
+import { useCart } from "@/contexts/cart-context"
 
 export function FeaturedProducts() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const { addToCart } = useCart()
 
   useEffect(() => {
     async function fetchFeaturedProducts() {
@@ -33,6 +35,10 @@ export function FeaturedProducts() {
 
     fetchFeaturedProducts()
   }, [])
+
+  const handleAddToCart = (product: Product) => {
+    addToCart(product, 1)
+  }
 
   if (loading) {
     return (
@@ -107,9 +113,13 @@ export function FeaturedProducts() {
               )}
             </div>
 
-            <Button className="w-full bg-purple-600 hover:bg-purple-700">
+            <Button
+              className="w-full bg-purple-600 hover:bg-purple-700"
+              onClick={() => handleAddToCart(product)}
+              disabled={product.stock_quantity === 0}
+            >
               <ShoppingCart className="h-4 w-4 mr-2" />
-              Adicionar ao Carrinho
+              {product.stock_quantity === 0 ? "Esgotado" : "Adicionar ao Carrinho"}
             </Button>
           </CardContent>
         </Card>

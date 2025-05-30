@@ -2,8 +2,9 @@ import { createServerSupabaseClient } from "@/lib/supabase"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ShoppingCart, Heart, Star, Truck, Shield, ArrowLeft } from "lucide-react"
+import { Heart, Star, Truck, Shield, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import { AddToCartButton } from "@/components/add-to-cart-button"
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const supabase = createServerSupabaseClient()
@@ -142,10 +143,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           </div>
 
           <div className="flex gap-4 mb-8">
-            <Button size="lg" className="bg-purple-600 hover:bg-purple-700 flex-1">
-              <ShoppingCart className="h-5 w-5 mr-2" />
-              Adicionar ao Carrinho
-            </Button>
+            <AddToCartButton product={product} />
             <Button size="lg" variant="outline" className="border-gray-300">
               <Heart className="h-5 w-5" />
             </Button>
