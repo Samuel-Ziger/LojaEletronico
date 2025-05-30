@@ -40,19 +40,19 @@ export function HeroSection() {
           <div className="relative">
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:scale-105 transition-transform duration-300 cursor-pointer">
                   <Smartphone className="h-12 w-12 text-purple-400 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Capas & Películas</h3>
                   <p className="text-gray-300 text-sm">Proteção completa para seu smartphone</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:scale-105 transition-transform duration-300 cursor-pointer">
                   <Speaker className="h-12 w-12 text-pink-400 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Caixas de Som</h3>
                   <p className="text-gray-300 text-sm">Som de alta qualidade</p>
                 </div>
               </div>
               <div className="space-y-6 mt-12">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:scale-105 transition-transform duration-300 cursor-pointer">
                   <Headphones className="h-12 w-12 text-blue-400 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Fones de Ouvido</h3>
                   <p className="text-gray-300 text-sm">Experiência sonora imersiva</p>
